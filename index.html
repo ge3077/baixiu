@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+
+        .box{
+            width: 690px;
+            height: 459px;
+            /* border: 1px solid #000; */
+            margin: 100px auto;
+            perspective: 1100px;
+            /* transform-style: preserve-3d; */
+        }
+
+
+        ul{
+            margin: 0;
+            list-style: none;
+            padding: 0;
+            float: left;
+            width: 50%;
+            height: 100%;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        li{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+
+        li:nth-child(1){
+            transform: translateZ(229.5px);
+            background: url(images/1.jpg) no-repeat;
+        }
+
+  
+        li:nth-child(2){
+            transform: rotateX(90deg) translateZ(229.5px);
+            background: url(images/2.jpg) no-repeat;
+        }
+
+        li:nth-child(3){
+
+            transform: rotateX(180deg) translateZ(229.5px);
+            background: url(images/3.jpg) no-repeat;
+        }
+
+        li:nth-child(4){
+
+            transform: rotateX(-90deg) translateZ(229.5px);
+            background: url(images/4.jpg) no-repeat;
+        }
+
+        .right>li{
+            background-position-x: -345px;
+        }
+
+
+    </style>
+</head>
+<body>
+    
+    <div class="box">
+        <ul class="left">
+            <li></li>
+            <li></li>
+            <li>3333</li>
+            <li></li>
+        </ul>
+        <ul class="right">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <input type="button" value="下一页" id="next">
+    <input type="button" value="上一页" id="prev">
+</body>
+</html>
+
+
+<script>
+
+    //找到左边ul
+    var left = document.querySelector('.left');
+    //找到右边ul
+    var right = document.querySelector('.right');
+
+    // 默认为第一页
+    var page = 0;
+    // 点击一下就翻到下一页
+    document.getElementById('next').onclick = function(){
+
+        page++;
+        var angle = page * -90;
+
+        left.style.transform = "rotateX(" + angle + "deg)";
+        left.style.transition = "all 1s";
+
+        right.style.transform = "rotateX(" + angle + "deg)";
+        right.style.transition = "all 1s .3s";
+    }
+
+    document.getElementById('prev').onclick = function(){
+
+        page--;
+        var angle = page * -90;
+
+        left.style.transform = "rotateX(" + angle + "deg)";
+        left.style.transition = "all 1s";
+
+        right.style.transform = "rotateX(" + angle + "deg)";
+        right.style.transition = "all 1s .3s";
+    }
+</script>
